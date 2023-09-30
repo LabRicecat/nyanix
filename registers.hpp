@@ -12,8 +12,18 @@ nxdeclreg( rac, 2 );
 nxdeclreg( rad, 3 );
 nxdeclreg( rae, 4 );
 
+nxdeclreg( regs, 40 ); // starting 
+nxdeclreg( rams, 41 );
+nxdeclreg( deos, 42 );
+nxdeclreg( mems, 43 );
+nxdeclreg( deis, 44 );
+nxdeclreg( csts, 45 );
+nxdeclreg( stks, 46 );
+
 nxdeclreg( ic, NYANIX_REG_SIZE - 1 ); // instruction counter
 nxdeclreg( sp, NYANIX_REG_SIZE - 2 ); // stack pointer
-nxdeclreg( rs, NYANIX_REG_SIZE - 3 ); // stack size 
+nxdeclreg( ss, NYANIX_REG_SIZE - 3 ); // stack size 
+
+void regset();
 
 #endif

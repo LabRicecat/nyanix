@@ -28,7 +28,6 @@ enum : instruction_t {
         //stack
     push,
     pop,
-    top,
         // boolean algebra
     bnot,
     band,

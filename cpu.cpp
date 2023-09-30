@@ -53,7 +53,8 @@ void cpuexec() {
         } break;
         
         case inst::jmp:
-            *dread(ic) = *dread(*dread(++*dread(ic)));
+            ++*dread(ic);
+            *dread(ic) = *dread(*dread(*dread(ic)))-1;
             break;
         case inst::eq: {
             unit_t* v = dread(*dread(++*dread(ic)));
@@ -61,7 +62,7 @@ void cpuexec() {
             unit_t* p = dread(*dread(++*dread(ic)));
 
             if(*v == *w) 
-                *dread(ic) = *p;
+                *dread(ic) = *p - 1;
         } break;
         case inst::gr: {
             unit_t* v = dread(*dread(++*dread(ic)));
@@ -69,7 +70,7 @@ void cpuexec() {
             unit_t* p = dread(*dread(++*dread(ic)));
 
             if(*v > *w) 
-                *dread(ic) = *p;
+                *dread(ic) = *p - 1;
         }
         case inst::ls: {
             unit_t* v = dread(*dread(++*dread(ic)));
@@ -77,14 +78,14 @@ void cpuexec() {
             unit_t* p = dread(*dread(++*dread(ic)));
 
             if(*v < *w) 
-                *dread(ic) = *p;
+                *dread(ic) = *p - 1;
         } break;
 
         case inst::push:
+            spush(*dread(*dread(++*dread(ic))));
             break;
         case inst::pop:
-            break;
-        case inst::top:
+            spop();
             break;
 
         case inst::bnot: {

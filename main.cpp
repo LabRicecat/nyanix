@@ -10,19 +10,20 @@
 int main() {
     diskinfo();
     unit_t prog[] = {
+        inst::put, 25, rac, 
+        inst::add, rac, mems, rac,
         inst::put, 10, raa,
-        inst::put, 0, rac,
-        inst::put, 13, rad,
         inst::put, 23, rae,
         inst::inc, rab,
         inst::dec, raa,
         inst::get, raa, rab,
-        inst::nop,
+        inst::jmp, rac,
+        inst::put, 0, raa,
         inst::hlt
     };
     load_prog(prog, sizeof(prog)/sizeof(unit_t));
 
-
+    regset();
     dwrite(ic, NYANIX_MEMORY_START);
 
     while(*dread(*dread(ic)) != inst::hlt)

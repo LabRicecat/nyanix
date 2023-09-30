@@ -5,6 +5,7 @@
 #include "address.hpp"
 #include "disk.hpp"
 #include "instructions.hpp"
+#include "stack.hpp"
 
 bool validexec(unit_t ex);
 void cpuexec();
