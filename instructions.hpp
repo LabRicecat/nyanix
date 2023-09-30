@@ -5,7 +5,8 @@
 
 using instruction_t = unit_t; 
 
-enum inst : instruction_t {
+namespace inst {
+enum : instruction_t {
     nop,
         // math
     inc,
@@ -37,6 +38,9 @@ enum inst : instruction_t {
     hlt,
         // pointer
     deref,
+
+    max,
 };
+}
 
 #endif
