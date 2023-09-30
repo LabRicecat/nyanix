@@ -7,6 +7,6 @@
 #include "instructions.hpp"
 
 bool validexec(unit_t ex);
-addr_t cpuexec(addr_t ex);
+void cpuexec();
 
 #endif

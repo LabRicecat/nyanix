@@ -5,20 +5,37 @@
 #include "registers.hpp"
 #include "cpu.hpp"
 
+#include "debug.hpp"
+
 int main() {
-    dwrite(10, inst::inc);
-    dwrite(11, raa);
-    dwrite(17000, 2);
-    dwrite(raa, 6);
+    diskinfo();
+    unit_t prog[] = {
+        inst::put, 10, raa,
+        inst::put, 0, rac,
+        inst::put, 13, rad,
+        inst::put, 23, rae,
+        inst::inc, rab,
+        inst::dec, raa,
+        inst::get, raa, rab,
+        inst::nop,
+        inst::hlt
+    };
+    load_prog(prog, sizeof(prog)/sizeof(unit_t));
 
-    cpuexec(10);
 
-    std::cout << *dread(10) << "\n";
+    dwrite(ic, NYANIX_MEMORY_START);
+
+    while(*dread(*dread(ic)) != inst::hlt)
+        cpuexec();
+
     std::cout << *dread(raa) << "\n";
+    std::cout << *dread(rab) << "\n";
     std::cout 
         << "-----\n"
         << "chunked: " << dchunked() << "\n"
         << "alloced: " << (dchunked() * NYANIX_CHUNK_SIZE) << "\n";
 
+    memsnip(NYANIX_MEMORY_START, 40);
+    
     dfree();
 }

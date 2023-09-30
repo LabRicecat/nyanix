@@ -9,14 +9,14 @@ constexpr addr_t drem_owned(addr_t addr) {
 }
 
 constexpr addr_t dto_chunk(addr_t addr) {
-    return drem_owned(addr) % (sizeof(disk)/sizeof(unit_t*));
+    return drem_owned(addr) / NYANIX_CHUNK_SIZE;
 }
 
 unit_t* dread(addr_t addr) {
     if(disk[dto_chunk(addr)] == nullptr)
         dchunk(dto_chunk(addr));
     
-    return &disk[dto_chunk(addr)][drem_owned(addr) / NYANIX_CHUNK_SIZE];
+    return &disk[dto_chunk(addr)][drem_owned(addr) % NYANIX_CHUNK_SIZE];
 }
 
 void dwrite(addr_t addr, unit_t value) {

@@ -49,7 +49,7 @@
 #endif
 
 #ifndef NYANIX_MEMORY_SIZE
-#define NYANIX_MEMORY_SIZE nxdiskpc(45)
+#define NYANIX_MEMORY_SIZE nxdiskpc(40)
 #endif
 
 #ifndef NYANIX_DEVICEIN_START

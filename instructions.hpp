@@ -23,13 +23,14 @@ enum : instruction_t {
         // jump 
     jmp, 
     eq, 
-    ls,
     gr,
+    ls,
         //stack
     push,
     pop,
     top,
         // boolean algebra
+    bnot,
     band,
     bor,
     bxor,
