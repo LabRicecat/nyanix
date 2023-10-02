@@ -8,17 +8,10 @@
 #include "debug.hpp"
 
 int main() {
-    diskinfo();
-    unit_t prog[] = {
-        inst::put, 25, rac, 
-        inst::add, rac, mems, rac,
-        inst::put, 10, raa,
-        inst::put, 23, rae,
-        inst::inc, rab,
-        inst::dec, raa,
-        inst::get, raa, rab,
-        inst::jmp, rac,
-        inst::put, 0, raa,
+    // diskinfo();
+    unit_t prog[] = { 
+        inst::put, 35, raa,
+        inst::sys, sysdbg,
         inst::hlt
     };
     load_prog(prog, sizeof(prog)/sizeof(unit_t));

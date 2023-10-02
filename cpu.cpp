@@ -109,6 +109,7 @@ void cpuexec() {
         } break;
 
         case inst::sys:
+            syshandle(*dread(++*dread(ic)));
             break;
         case inst::hlt:
             break;

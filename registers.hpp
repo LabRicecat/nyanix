@@ -23,6 +23,8 @@ nxdeclreg( stks, 46 );
 nxdeclreg( ic, NYANIX_REG_SIZE - 1 ); // instruction counter
 nxdeclreg( sp, NYANIX_REG_SIZE - 2 ); // stack pointer
 nxdeclreg( ss, NYANIX_REG_SIZE - 3 ); // stack size 
+nxdeclreg( csp, NYANIX_REG_SIZE - 4 ); // callstack pointer
+nxdeclreg( css, NYANIX_REG_SIZE - 5 ); // callstack size
 
 void regset();
 

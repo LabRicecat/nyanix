@@ -11,4 +11,6 @@ void regset() {
 
     dwrite(sp, NYANIX_STACK_START);
     dwrite(ss, 0);
+    dwrite(csp, NYANIX_CALLSTACK_START);
+    dwrite(css, 0);
 }

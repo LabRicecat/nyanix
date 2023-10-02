@@ -17,5 +17,24 @@ bool sempty() {
 }
 
 unit_t ssize() {
-    return *dread(ss);
+    return *dread(css);
+}
+
+void cspush(addr_t addr) {
+    ++*dread(css);
+    dwrite(*dread(csp), *dread(addr));
+    ++*dread(csp);
+}
+
+void cspop() {
+    --*dread(css);
+    --*dread(csp);
+}
+
+bool csempty() {
+    return *dread(css) == 0;
+}
+
+unit_t cssize() {
+    return *dread(css);
 }

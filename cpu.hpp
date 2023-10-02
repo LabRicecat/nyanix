@@ -6,6 +6,7 @@
 #include "disk.hpp"
 #include "instructions.hpp"
 #include "stack.hpp"
+#include "syscall.hpp"
 
 bool validexec(unit_t ex);
 void cpuexec();
