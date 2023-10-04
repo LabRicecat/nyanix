@@ -58,7 +58,7 @@ nxdf nxdf_from_disk() {
 
 bool nxdf_valid(nxdf* df) {
     if(df->size < 4 + sizeof(nxdfs_t)) return false;
-    if((df->size - 4 + sizeof(nxdfs_t)) % (NYANIX_CHUNK_SIZE * sizeof(unit_t) + sizeof(nxdfs_t)) != 0) return false;
+    if((df->size - 4 - sizeof(nxdfs_t)) % (NYANIX_CHUNK_SIZE * sizeof(unit_t)) != 0) return false;
 
     char* magic = new char[4];
     memcpy(magic, df->file, 4);
@@ -82,10 +82,15 @@ void nxdf_to_disk(nxdf* df) {
     nxdfs_t size = 0;
 
     for(nxdfs_t i = 0; i < df->size; ) {
-        memcpy((char*)&size, df->file + i, sizeof(nxdfs_t));
-        memcpy(disk[size], df->file + i + sizeof(nxdfs_t), NYANIX_CHUNK_SIZE);
+        nxdfs_t chunks = 0;
+        memcpy((char*)&chunks, df->file + i, sizeof(nxdfs_t));
+        
+        addr_t index = chunks / sizeof(nxdfs_t) / NYANIX_CHUNK_SIZE;
 
-        i += NYANIX_CHUNK_SIZE + sizeof(nxdfs_t);
+        dchunk(index);
+        memcpy(disk[index], df->file + i + sizeof(nxdfs_t), sizeof(unit_t) * NYANIX_CHUNK_SIZE);
+
+        i += NYANIX_CHUNK_SIZE * sizeof(unit_t) + sizeof(nxdfs_t);
     }
 
     df->file -= 4 + sizeof(nxdfs_t);

@@ -20,7 +20,9 @@ void diskinfo() {
     << "callstack start: " << NYANIX_CALLSTACK_START << "\n"
     << "callstack size:  " << NYANIX_CALLSTACK_SIZE << "\n"
     << "stack start: " << NYANIX_STACK_START << "\n"
-    << "stack size:  " << NYANIX_STACK_SIZE << "\n";
+    << "stack size:  " << NYANIX_STACK_SIZE << "\n"
+    << "chunked: " << dchunked() << "\n"
+    ;
 }
 
 void load_prog(unit_t* prog, unit_t size) {
@@ -74,7 +76,7 @@ void nxdf_display(nxdf* df) {
                 std::cout << "\n";
             }
             unit_t unit = unit;
-            memcpy((char*)&unit, df->file + j * sizeof(unit_t), sizeof(unit_t));
+            memcpy((char*)&unit, df->file + i + j * sizeof(unit_t), sizeof(unit_t));
 
             printf("%08x ",unit);
         }
