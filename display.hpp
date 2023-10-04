@@ -17,5 +17,6 @@ nxdiskname(distart, NYANIX_DEVICEOUT_START, 2);
 
 void disinit();
 void disshow();
+void disquit();
 
 #endif

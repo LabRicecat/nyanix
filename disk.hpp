@@ -77,7 +77,7 @@
 #endif
 
 #ifndef NYANIX_CHUNK_SIZE
-#define NYANIX_CHUNK_SIZE nxKU(4)
+#define NYANIX_CHUNK_SIZE nxKU(2)
 #endif
 
 inline unit_t* disk[NYANIX_DISK_SIZE / NYANIX_CHUNK_SIZE] = {nullptr};
